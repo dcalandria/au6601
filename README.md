@@ -1,6 +1,8 @@
 # au6601
 Linux kernel module for Alcor Micro AU6601 Secure Digital Host Controller
-
+plus concerning ebuild for gentoo,
+Unfortunately this kernel module doesn't work with newer kernels-- so
+I have to use ampe_stor instead.
 ...
 
 This driver is based on documentation which was based on my RE-work and
@@ -15,4 +17,6 @@ Biggest part of RE-work was done by emulating AU6601 in QEMU.
 Signed-off-by: Oleksij Rempel
                linux AT rempel-privat.de
 
+´´´
 https://launchpadlibrarian.net/175159219/[PATCH] mmc%3A add new au6601 driver.eml             
+´´´
