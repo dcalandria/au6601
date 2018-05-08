@@ -1018,11 +1018,11 @@ static void au6601_request_complete(struct au6601_host *host)
 	mmc_request_done(host->mmc, mrq);
 }
 
-static void au6601_timeout_timer(unsigned long data)
+static void au6601_timeout_timer(struct timer_list *t)
 {
 	struct au6601_host *host;
 
-	host = (struct au6601_host *)data;
+	host = from_timer(host, t, timer);
 
 	mutex_lock(&host->cmd_mutex);
 
@@ -1187,7 +1187,7 @@ static int __init au6601_pci_probe(struct pci_dev *pdev,
 	/*
 	 * Init tasklets.
 	 */
-	setup_timer(&host->timer, au6601_timeout_timer, (unsigned long)host);
+	timer_setup(&host->timer, au6601_timeout_timer, 0);
 
 	au6601_init_mmc(host);
 	au6601_hw_init(host);
